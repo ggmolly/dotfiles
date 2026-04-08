@@ -1,0 +1,61 @@
+{
+  "use_system_path_prompts": true,
+  "agent_servers": {
+    "codex": {
+      "default_mode": "full-access"
+    }
+  },
+  "debugger": {
+    "dock": "right"
+  },
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_profile": "write",
+    "play_sound_when_agent_done": true,
+    "notify_when_agent_waiting": "never",
+    "enable_feedback": false,
+    "dock": "right",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.5"
+    },
+    "model_parameters": []
+  },
+  "disable_ai": false,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "base_keymap": "VSCode",
+  "minimap": {
+    "show": "auto"
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "buffer_font_fallbacks": [
+    "Droid Sans Mono",
+    "monospace",
+    "monospace"
+  ],
+  "buffer_font_family": "BerkeleyMono Nerd Font",
+  "file_types": {},
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+  "ui_font_size": 15,
+  "buffer_font_size": 13.5,
+  "theme": {
+    "mode": "dark",
+    "light": "Solarized Light",
+    "dark": "Molly Shades"
+  },
+  "show_edit_predictions": false,
+  "show_completions_on_input": false,
+  "ui_font_family": "BerkeleyMono Nerd Font",
+  "vim_mode": false
+}

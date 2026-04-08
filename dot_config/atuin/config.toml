@@ -1,0 +1,7 @@
+style = "compact"
+inline_height = 15
+show_preview = true
+show_help = false
+sync_frequency = "1h"
+search_mode = "fuzzy"
+enter_accept = true

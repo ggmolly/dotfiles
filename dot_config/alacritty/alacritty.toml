@@ -1,0 +1,53 @@
+[window]
+padding = { x = 24, y = 24 }
+dynamic_padding = true
+decorations = "none"
+opacity = 1.0
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+normal = { family = "BerkeleyMono Nerd Font", style = "Regular" }
+bold = { family = "BerkeleyMono Nerd Font", style = "Bold" }
+italic = { family = "BerkeleyMono Nerd Font", style = "Italic" }
+bold_italic = { family = "BerkeleyMono Nerd Font", style = "Bold Italic" }
+size = 11.5
+
+[colors.primary]
+background = "#111319"
+foreground = "#E8ECF2"
+
+[colors.cursor]
+text = "#111319"
+cursor = "#E35D8F"
+
+[colors.selection]
+text = "#111319"
+background = "#E35D8F"
+
+[colors.normal]
+black   = "#1A1F2B"
+red     = "#FF5555"
+green   = "#50FA7B"
+yellow  = "#F1FA8C"
+blue    = "#8BE9FD"
+magenta = "#E35D8F"
+cyan    = "#8BE9FD"
+white   = "#8B93A6"
+
+[colors.bright]
+black   = "#2D354B"
+red     = "#FF6E6E"
+green   = "#69FF94"
+yellow  = "#FFFFA5"
+blue    = "#D6ACFF"
+magenta = "#C94F7C"
+cyan    = "#A4FFFF"
+white   = "#FFFFFF"
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 500
+unfocused_hollow = true

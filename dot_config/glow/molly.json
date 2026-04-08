@@ -1,0 +1,50 @@
+{
+  "document": {
+    "color": "#E8ECF2",
+    "margin": 2
+  },
+  "block_quote": {
+    "indent": 1,
+    "indent_token": "│ ",
+    "color": "#8B93A6"
+  },
+  "code": {
+    "color": "#E35D8F",
+    "background_color": "#1A1F2B"
+  },
+  "code_block": {
+    "color": "#E8ECF2",
+    "margin": 1
+  },
+  "heading": {
+    "color": "#111319",
+    "background_color": "#E35D8F",
+    "bold": true,
+    "prefix": " ",
+    "suffix": " "
+  },
+  "link": {
+    "color": "#8BE9FD",
+    "underline": true
+  },
+  "text": {
+    "color": "#E8ECF2"
+  },
+  "strikethrough": {
+    "crossed_out": true,
+    "color": "#8B93A6"
+  },
+  "strong": {
+    "color": "#FF5555",
+    "bold": true
+  },
+  "table": {
+    "center_separator": "┼",
+    "column_separator": "│",
+    "row_separator": "─"
+  },
+  "task_checkbox": {
+    "color": "#E35D8F",
+    "margin": 1
+  }
+}

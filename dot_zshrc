@@ -1,0 +1,95 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source /usr/share/cachyos-zsh-config/cachyos-config.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || # source ~/.p10k.zsh
+
+alias ls=eza
+eval "$(direnv hook zsh)"
+
+autoload -Uz compinit
+compinit
+
+export PATH="$PATH:/home/molly/.local/bin"
+export PATH="/home/molly/.bun/bin:$PATH"
+
+export EDITOR=vim
+export VISUAL="$EDITOR"
+
+bindkey '^H' backward-kill-word
+
+#alias z=zeditor
+
+export TERM='xterm-256color'
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+eval "$(starship init zsh)"
+
+# --- Eza Aliases (Modern ls) ---
+alias ls="eza --icons --group-directories-first --color=auto"
+alias ll="eza -lah --icons --group-directories-first --color=auto"
+alias tree="eza --tree --icons --level=2"
+
+# --- FZF (Fuzzy Finder) Theme ---
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#202636,bg:#111319,spinner:#E35D8F,hl:#E35D8F \
+--color=fg:#E8ECF2,header:#E35D8F,info:#8B93A6,pointer:#E35D8F \
+--color=marker:#E35D8F,fg+:#E8ECF2,prompt:#E35D8F,hl+:#E35D8F \
+--prompt= --pointer=❯ --marker= \
+--layout=reverse --border=none --info=inline"
+
+# --- BAT (Cat clone) Theme ---
+# Using 'ansi' forces bat to use Alacritty's gorgeous color palette we just configured!
+export BAT_THEME="ansi"
+
+# --- Man Pages colored with BAT ---
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+
+# --- ATUIN ---
+eval "$(atuin init zsh)"
+
+# --- FZF-TAB ---
+source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
+zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
+zstyle ":fzf-tab:complete:cd:*" fzf-preview "eza -1 --color=always \$realpath"
+zstyle ":fzf-tab:complete:z:*" fzf-preview "eza -1 --color=always \$realpath"
+
+# --- ZSH Superpowers (Autosuggestions & Syntax Highlighting) ---
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Autosuggestions color (Ghost text in muted grey-blue)
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4A5675"
+
+# Syntax Highlighting matching the Molly Shades palette
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+typeset -gA ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]='fg=#E35D8F,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#E35D8F,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#E35D8F,bold'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#FF5555,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=#8B93A6,underline'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#50FA7B'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#50FA7B'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#C94F7C'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#F1FA8C'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#F1FA8C'
+
+# --- Zoxide (Better cd) ---
+# Override Zed alias to give 'z' to zoxide
+unalias z 2>/dev/null || true
+alias zed="zed-editor" # Keep access to Zed
+eval "$(zoxide init zsh)"
+
+# --- Auto-ls on directory change ---
+# Automatically lists directory contents when you cd into it
+function chpwd() {
+    echo -e "\033[38;2;227;93;143m\n  $(pwd)\033[0m"
+    eza --icons --group-directories-first --color=auto
+}
