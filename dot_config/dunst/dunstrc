@@ -69,3 +69,8 @@
 [discord]
     appname = Discord
     frame_color = "#3A445E"
+
+[spotify]
+    appname = Spotify
+    frame_color = "#C94F7C"
+    icon_position = off

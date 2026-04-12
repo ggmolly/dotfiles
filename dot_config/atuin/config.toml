@@ -4,4 +4,5 @@ show_preview = true
 show_help = false
 sync_frequency = "1h"
 search_mode = "fuzzy"
+# Utilise les couleurs de ton terminal (Molly Shades)
 enter_accept = true
