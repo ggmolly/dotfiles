@@ -1,7 +1,11 @@
 # Commands
 
 ```bash
-paru -S chezmoi i3-wm polybar picom-ftlabs-git rofi rofi-greenclip dunst feh xdotool i3-resurrect unclutter-xfixes-git xidlehook redshift i3lock-color alacritty zsh starship zoxide eza bat bat-extras fzf ripgrep ripgrep-all fd tealdeer git-delta navi atuin tmux zellij btop lazygit yazi fastfetch cbonsai zed-editor gping xh dust fx glow github-cli khal papirus-icon-theme
+paru -S chezmoi i3-wm polybar picom-ftlabs-git rofi rofi-greenclip dunst feh xdotool i3-resurrect unclutter-xfixes-git xidlehook redshift i3lock-color alacritty zsh starship zoxide direnv eza bat bat-extras fzf ripgrep ripgrep-all fd tealdeer git-delta navi atuin tmux zellij btop lazygit yazi fastfetch cbonsai zed-editor gping xh dust fx glow github-cli khal papirus-icon-theme zsh-autosuggestions zsh-syntax-highlighting
+```
+
+```bash
+git clone https://github.com/Aloxaf/fzf-tab ~/.zsh/fzf-tab
 ```
 
 ```bash
@@ -12,7 +16,7 @@ chezmoi init --apply --source="$HOME/Documents/dotfiles"
 chezmoi apply --source="$HOME/Documents/dotfiles"
 ```
 
-`dot_config/opencode/encrypted_opencode.json` is encrypted with `age` and expects `~/.ssh/id_ed25519` for decryption.
+Encrypted `chezmoi` files now use `gpg` and require one of the configured private keys for decryption.
 
 # Cheat Sheet
 

@@ -13,6 +13,17 @@ source /usr/share/cachyos-zsh-config/cachyos-config.zsh
 alias ls=eza
 eval "$(direnv hook zsh)"
 
+source_first() {
+  local candidate
+  for candidate in "$@"; do
+    if [[ -r "$candidate" ]]; then
+      source "$candidate"
+      return 0
+    fi
+  done
+  return 1
+}
+
 autoload -Uz compinit
 compinit
 
@@ -27,7 +38,9 @@ bindkey '^H' backward-kill-word
 #alias z=zeditor
 
 export TERM='xterm-256color'
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+if [[ -S "$XDG_RUNTIME_DIR/gcr/ssh" ]]; then
+  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+fi
 eval "$(starship init zsh)"
 
 # --- Eza Aliases (Modern ls) ---
@@ -55,14 +68,21 @@ export MANROFFOPT="-c"
 eval "$(atuin init zsh)"
 
 # --- FZF-TAB ---
-source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
+source_first \
+  ~/.zsh/fzf-tab/fzf-tab.plugin.zsh \
+  /usr/share/fzf-tab/fzf-tab.plugin.zsh \
+  /usr/share/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
 zstyle ":fzf-tab:complete:cd:*" fzf-preview "eza -1 --color=always \$realpath"
 zstyle ":fzf-tab:complete:z:*" fzf-preview "eza -1 --color=always \$realpath"
 
 # --- ZSH Superpowers (Autosuggestions & Syntax Highlighting) ---
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source_first \
+  ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source_first \
+  ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+  /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Autosuggestions color (Ghost text in muted grey-blue)
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4A5675"
