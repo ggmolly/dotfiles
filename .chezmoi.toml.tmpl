@@ -1,5 +1,7 @@
-encryption = "age"
+encryption = "gpg"
 
-[age]
-recipient = "age13d0p6ndgutct3dpytzw4usgmgxx57gxvzczwsc0ml3930yeqpelsprkpvg"
-identity = "{{ .chezmoi.homeDir }}/.config/chezmoi/key.txt"
+[gpg]
+ recipients = [
+  "B55F7EF14FA38595885560B84077A1913E850074",
+  "B7FA8DB9903B05B9E96C305D385F66238351B06D",
+ ]
