@@ -44,8 +44,8 @@ EOF
     continue
   fi
 
-  if ! IFS=$'\t' read -r five_hours weekly <<EOF
-$(jq -r '[.rate_limit.primary_window.used_percent, .rate_limit.secondary_window.used_percent] | @tsv' <<< "$usage" 2>/dev/null)
+  if ! IFS=$'\t' read -r five_hours weekly weekly_reset_seconds <<EOF
+$(jq -r '[.rate_limit.primary_window.used_percent, .rate_limit.secondary_window.used_percent, .rate_limit.secondary_window.reset_after_seconds] | @tsv' <<< "$usage" 2>/dev/null)
 EOF
   then
     printf '󱎫 ? 󰸗 ?\n'
@@ -53,6 +53,7 @@ EOF
     continue
   fi
 
-  printf '󱎫 %s%% 󰸗 %s%%\n' "$five_hours" "$weekly"
+  weekly_days=$(( (weekly_reset_seconds + 86399) / 86400 ))
+  printf '󱎫 %s%% 󰸗 %s%% • %sd\n' "$five_hours" "$weekly" "$weekly_days"
   sleep "$interval"
 done
