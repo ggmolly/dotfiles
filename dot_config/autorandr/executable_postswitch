@@ -1,0 +1,4 @@
+#!/bin/sh
+
+/run/current-system/sw/bin/pkill -x polybar 2>/dev/null || true
+/run/current-system/sw/bin/i3-msg reload >/dev/null 2>&1 || true
