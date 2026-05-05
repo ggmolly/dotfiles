@@ -119,6 +119,8 @@
     brave
     btop
     bun
+    xkill
+    htop
     nodejs_22
     cbonsai
     chezmoi
