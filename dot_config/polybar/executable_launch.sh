@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 set -eu
 
@@ -15,11 +15,11 @@ case "${1:-}" in
     ;;
 esac
 
-killall -q polybar || true
-while pgrep -u "$UID" -x polybar >/dev/null; do sleep 1; done
+pkill -x polybar 2>/dev/null || true
+while pgrep -u "$(id -u)" -x polybar >/dev/null; do sleep 1; done
 
 if [ "$style" = "pwidgets" ]; then
-  exec bash "$dir/pwidgets/launch.sh" --main
+  exec /bin/sh "$dir/pwidgets/launch.sh" --main
 fi
 
 if [ "$style" = "hack" ] || [ "$style" = "cuts" ]; then
