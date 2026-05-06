@@ -126,6 +126,7 @@
     chezmoi
     curl
     delta
+    dbeaver-bin
     direnv
     dunst
     dust
